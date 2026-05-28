@@ -63,7 +63,7 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
             <div class="sb-item"><i class="sb-icon git"></i> Source Control</div>
             <div class="sb-item"><i class="sb-icon db"></i> Database</div>
             <div class="sb-item"><i class="sb-icon ssh"></i> SSH</div>
-            <div class="sb-item"><i class="sb-icon ai"></i> AI Assist</div>
+            <div class="sb-item"><i class="sb-icon api"></i> API Client</div>
           </aside>
           <section class="editor">
             <div class="tabs">
@@ -80,12 +80,6 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
         frappe.throw(_(<span class="s">"Item code is required"</span>))
     doc.last_validated = nowdate()</pre>
           </section>
-          <aside class="ai-panel">
-            <div class="ai-msg user">Explain this validate_item hook.</div>
-            <div class="ai-msg assistant">
-              <span class="typing">It's a controller method bound to <code>Item</code>'s <code>validate</code> event…</span>
-            </div>
-          </aside>
         </div>
       </div>
     </div>
@@ -243,7 +237,7 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
 }
 .window-body {
   display: grid;
-  grid-template-columns: 200px 1fr 280px;
+  grid-template-columns: 200px 1fr;
   min-height: 320px;
 }
 .sidebar {
@@ -305,39 +299,9 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
 .code .f { color: #8e72ff; }
 .code .s { color: #4ade80; }
 .code .c { color: #6b7280; font-style: italic; }
-.ai-panel {
-  border-left: 1px solid var(--border);
-  padding: 16px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 12.5px;
-}
-.ai-msg {
-  padding: 10px 12px;
-  border-radius: 8px;
-  line-height: 1.55;
-  text-align: left;
-}
-.ai-msg.user {
-  background: var(--bg-card-hover);
-  color: var(--fg);
-}
-.ai-msg.assistant {
-  background: var(--accent-soft);
-  color: var(--fg);
-}
-.ai-msg.assistant code {
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0 4px;
-  border-radius: 3px;
-}
 @media (max-width: 920px) {
   .window-body {
     grid-template-columns: 160px 1fr;
-  }
-  .ai-panel {
-    display: none;
   }
 }
 @media (max-width: 560px) {

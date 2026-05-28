@@ -151,30 +151,6 @@ defineProps<{ kind: string }>();
       </g>
     </svg>
 
-    <!-- ai -->
-    <svg v-else-if="kind === 'ai'" viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg">
-      <rect width="720" height="280" rx="10" fill="#11151c" />
-      <g transform="translate(20, 20)">
-        <rect width="680" height="40" rx="6" fill="#1c2230" />
-        <circle cx="22" cy="20" r="8" fill="#7c5cff" />
-        <text x="40" y="25" fill="#e7e9ee" font-family="Inter" font-size="13" font-weight="600">AI Assistant</text>
-        <text x="580" y="25" fill="#9aa1ad" font-family="Inter" font-size="12">claude-sonnet-4-6</text>
-      </g>
-      <g transform="translate(20, 78)">
-        <rect width="680" height="48" rx="8" fill="#1c2230" />
-        <text x="14" y="20" fill="#9aa1ad" font-family="Inter" font-size="11">you</text>
-        <text x="14" y="38" fill="#e7e9ee" font-family="Inter" font-size="13">Write a hook that prevents Sales Invoice submission when total is zero.</text>
-      </g>
-      <g transform="translate(20, 138)">
-        <rect width="680" height="118" rx="8" fill="#7c5cff22" />
-        <text x="14" y="20" fill="#7c5cff" font-family="Inter" font-size="11" font-weight="600">claude</text>
-        <text x="14" y="40" fill="#e7e9ee" font-family="JetBrains Mono" font-size="12">def validate(doc, method):</text>
-        <text x="14" y="58" fill="#e7e9ee" font-family="JetBrains Mono" font-size="12">    if doc.grand_total &lt;= 0:</text>
-        <text x="14" y="76" fill="#e7e9ee" font-family="JetBrains Mono" font-size="12">        frappe.throw(_("Total must be greater than 0"))</text>
-        <text x="14" y="102" fill="#9aa1ad" font-family="Inter" font-size="12">I added it to apps/your_app/hooks.py — review the diff?</text>
-      </g>
-    </svg>
-
     <!-- git -->
     <svg v-else-if="kind === 'git'" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
       <rect width="720" height="260" rx="10" fill="#11151c" />

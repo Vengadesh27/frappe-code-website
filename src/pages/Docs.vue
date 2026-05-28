@@ -16,7 +16,6 @@ const sections: Section[] = [
   { id: 'database', title: 'Database browser' },
   { id: 'api-editor', title: 'API editor' },
   { id: 'ssh', title: 'SSH & remote benches' },
-  { id: 'ai-assistant', title: 'AI assistant' },
   { id: 'git', title: 'Git integration' },
   { id: 'ngrok', title: 'Public tunnels via ngrok' },
   { id: 'preferences', title: 'Preferences' },
@@ -202,9 +201,8 @@ onMounted(() => {
         <DocsIllustration kind="api" />
         <p>
           A Postman-style REST client built into the app so you can hit your bench's
-          API endpoints without leaving the editor. Pair it with the AI assistant
-          for end-to-end "describe the endpoint → call it → assert on the response"
-          workflows.
+          API endpoints without leaving the editor — useful for poking at Frappe's
+          built-in REST and RPC endpoints, custom whitelisted methods, and webhooks.
         </p>
         <h3>Request builder</h3>
         <ul>
@@ -239,24 +237,6 @@ onMounted(() => {
           <li>Forward a local port to a remote service — useful for hitting an internal admin port from your laptop browser.</li>
           <li>Run bench commands on the remote bench from the same Bench Actions UI.</li>
         </ul>
-      </section>
-
-      <section id="ai-assistant" class="docs-section">
-        <h2>AI assistant</h2>
-        <DocsIllustration kind="ai" />
-        <p>
-          Bring your own API key. Settings → Chat:
-        </p>
-        <ul>
-          <li><strong>Provider</strong> — Claude (Anthropic) or OpenAI.</li>
-          <li><strong>Model</strong> — opus / sonnet / haiku for Claude, gpt-4o family for OpenAI.</li>
-          <li><strong>API key</strong> — stored locally in <code>userData/settings.json</code>, sent only to the provider you picked.</li>
-        </ul>
-        <p>
-          The assistant has tool access to the bench: reading files, listing apps,
-          running safe bench commands. Destructive operations (writing files,
-          dropping sites) require explicit confirmation in the chat panel.
-        </p>
       </section>
 
       <section id="git" class="docs-section">

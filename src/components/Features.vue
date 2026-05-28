@@ -27,11 +27,6 @@ const features: Feature[] = [
     body: 'Browse sites, run queries, dump and restore databases, manage site config and installed apps from a single panel.',
   },
   {
-    icon: '✨',
-    title: 'AI assistant built in',
-    body: 'Bring your Claude or OpenAI key. Ask questions about hooks, doctypes, controllers, and let the assistant draft code in your bench.',
-  },
-  {
     icon: '🧩',
     title: 'Hooks & print formats',
     body: 'Doctype manager, hooks editor with autocomplete, print format editor with live HTML/CSS preview and snippets.',
