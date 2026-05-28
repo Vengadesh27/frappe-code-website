@@ -1,15 +1,19 @@
 <script setup lang="ts">
-defineProps<{ kind: string }>();
-// Lightweight SVG illustrations standing in for real screenshots. Each frame
-// hints at the UI shape the surrounding section describes — drop a real PNG
-// into /public/screenshots/<kind>.png and replace this component with a
-// regular <img> when you have one.
+const props = defineProps<{ kind: string }>();
+
+// Real PNG screenshots that exist in /public/screenshots/. For these `kind`
+// values we render an <img>; the rest fall through to inline SVG below.
+const HAS_PNG = new Set(['welcome', 'prefs', 'sites']);
+const hasReal = HAS_PNG.has(props.kind);
+const realSrc = `/screenshots/${props.kind}.png`;
+const realAlt = `Frappe Code — ${props.kind} screenshot`;
 </script>
 
 <template>
   <figure class="illu" :class="`k-${kind}`">
+    <img v-if="hasReal" :src="realSrc" :alt="realAlt" loading="lazy" decoding="async" />
     <!-- welcome -->
-    <svg v-if="kind === 'welcome'" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
+    <svg v-else-if="kind === 'welcome'" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
       <rect width="720" height="360" rx="10" fill="#11151c" />
       <rect x="20" y="20" width="680" height="24" rx="6" fill="#1c2230" />
       <circle cx="34" cy="32" r="5" fill="#fb7185" /><circle cx="50" cy="32" r="5" fill="#fbbf24" /><circle cx="66" cy="32" r="5" fill="#4ade80" />
@@ -233,9 +237,13 @@ defineProps<{ kind: string }>();
   border: 1px solid var(--border);
   box-shadow: var(--shadow-card);
 }
-.illu svg {
+.illu svg,
+.illu img {
   display: block;
   width: 100%;
   height: auto;
+}
+.illu img {
+  background: var(--bg-card);
 }
 </style>
