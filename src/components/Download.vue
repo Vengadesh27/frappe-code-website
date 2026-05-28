@@ -16,7 +16,6 @@ interface Platform {
 const platforms: Platform[] = [
   { id: 'linux', label: 'Linux', byline: 'AppImage · deb', extensions: ['.AppImage', '.deb'] },
   { id: 'mac', label: 'macOS', byline: 'Intel & Apple Silicon', extensions: ['.dmg', '-mac.zip'] },
-  { id: 'windows', label: 'Windows', byline: '64-bit installer', extensions: ['.exe'] },
 ];
 
 const assetsByOS = computed(() => {

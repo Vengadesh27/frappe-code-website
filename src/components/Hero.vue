@@ -26,7 +26,7 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
 
       <h1 class="headline">
         The <span class="grad">desktop IDE</span><br />
-        built for Frappe &amp; ERPNext.
+        built for Frappe.
       </h1>
 
       <p class="lede">{{ APP_TAGLINE }}. {{ APP_SUBTITLE }}</p>
@@ -44,7 +44,7 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
       </div>
 
       <p class="small-print dim">
-        Free and open-source. Works on Linux, macOS, and Windows.
+        Free and open-source. Works on Linux and macOS.
       </p>
     </div>
 

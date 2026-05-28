@@ -14,6 +14,7 @@ const sections: Section[] = [
   { id: 'sites', title: 'Sites' },
   { id: 'doctypes-hooks', title: 'Doctypes, hooks & print formats' },
   { id: 'database', title: 'Database browser' },
+  { id: 'api-editor', title: 'API editor' },
   { id: 'ssh', title: 'SSH & remote benches' },
   { id: 'ai-assistant', title: 'AI assistant' },
   { id: 'git', title: 'Git integration' },
@@ -196,6 +197,35 @@ onMounted(() => {
         </ul>
       </section>
 
+      <section id="api-editor" class="docs-section">
+        <h2>API editor</h2>
+        <DocsIllustration kind="api" />
+        <p>
+          A Postman-style REST client built into the app so you can hit your bench's
+          API endpoints without leaving the editor. Pair it with the AI assistant
+          for end-to-end "describe the endpoint → call it → assert on the response"
+          workflows.
+        </p>
+        <h3>Request builder</h3>
+        <ul>
+          <li><strong>Method + URL bar</strong> — GET / POST / PUT / PATCH / DELETE / HEAD / OPTIONS with a Send button.</li>
+          <li><strong>Params</strong> — key/value editor for query string params; toggleable per row.</li>
+          <li><strong>Headers</strong> — auto-suggests common Frappe headers (<code>X-Frappe-CSRF-Token</code>, <code>Authorization: token …</code>).</li>
+          <li><strong>Body</strong> — None / JSON / XML / form-data / x-www-form-urlencoded. JSON and XML get Monaco syntax highlighting with the same theme as the main editor.</li>
+          <li><strong>Auth</strong> — Bearer token, Basic, or Frappe token (api_key:api_secret) presets.</li>
+          <li><strong>Cookies</strong> — per-domain cookie jar persisted to <code>userData</code>.</li>
+          <li><strong>Pre-request &amp; Tests</strong> — JavaScript snippets that run before/after the request, with helpers like <code>pm.response.json()</code> and <code>pm.test()</code> for Postman parity.</li>
+        </ul>
+        <h3>Response viewer</h3>
+        <ul>
+          <li><strong>Pretty / Raw / Preview</strong> — pretty-prints JSON, renders HTML in a sandboxed preview.</li>
+          <li><strong>Headers + cookies</strong> tabs with copy buttons.</li>
+          <li><strong>Actual request</strong> — what was actually sent over the wire (post-redirect, post-auth interpolation).</li>
+          <li><strong>Console</strong> — output of any <code>console.log</code> from pre-request / test scripts.</li>
+          <li><strong>Tests</strong> — green/red pass-fail summary inline below the response.</li>
+        </ul>
+      </section>
+
       <section id="ssh" class="docs-section">
         <h2>SSH &amp; remote benches</h2>
         <DocsIllustration kind="ssh" />
@@ -316,17 +346,18 @@ onMounted(() => {
 
 <style scoped>
 .docs-shell {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 48px;
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 56px 24px 80px;
+  /* The TOC is position: fixed, so reserve left padding to leave space for it
+     on wide viewports. On narrow viewports the TOC drops to a static position. */
+  padding-left: calc(260px + 48px + 24px);
 }
 .toc {
-  position: sticky;
+  position: fixed;
   top: 84px;
-  align-self: start;
+  left: max(24px, calc((100vw - var(--max-w)) / 2 + 24px));
+  width: 260px;
   height: calc(100vh - 110px);
   overflow: auto;
 }
@@ -433,11 +464,13 @@ onMounted(() => {
 
 @media (max-width: 920px) {
   .docs-shell {
-    grid-template-columns: 1fr;
+    padding-left: 24px;
   }
   .toc {
     position: static;
+    width: auto;
     height: auto;
+    left: auto;
     margin-bottom: 30px;
   }
 }

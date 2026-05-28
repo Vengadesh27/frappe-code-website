@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
         <span class="logo" aria-hidden="true"></span>
         <div>
           <div class="name">{{ APP_NAME }}</div>
-          <div class="tag dim">A desktop IDE for Frappe & ERPNext.</div>
+          <div class="tag dim">A desktop IDE for Frappe.</div>
         </div>
       </div>
       <nav class="links">
