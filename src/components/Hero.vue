@@ -1,28 +1,27 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { APP_TAGLINE, APP_SUBTITLE } from '../config';
-import { useOS, osLabel } from '../composables/useOS';
-import { useRelease, bestAssetForOS, formatBytes } from '../composables/useRelease';
-
-const { os } = useOS();
-const { release, loading, releasesPageUrl } = useRelease();
-
-const primaryAsset = computed(() => bestAssetForOS(release.value, os.value));
-const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '');
+import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO } from '../config';
 </script>
 
 <template>
   <section class="hero" id="top">
+    <!-- Background scenery: gradient mesh, particle orbs, scanning line -->
     <div class="bg-glow" aria-hidden="true"></div>
     <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+    <div class="bg-orb orb-3" aria-hidden="true"></div>
+    <div class="bg-aurora" aria-hidden="true"></div>
+    <div class="bg-particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span>
+    </div>
 
-    <div class="container hero-inner">
-      <a class="pill" :href="releasesPageUrl" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        <span v-if="version">{{ version }} — latest release</span>
-        <span v-else-if="loading">Loading latest release…</span>
-        <span v-else>Pre-release · check GitHub</span>
-      </a>
+    <div class="container hero-inner reveal">
+      <span class="pill coming-pill">
+        <span class="dot pulse"></span>
+        Coming soon · launching shortly
+      </span>
 
       <h1 class="headline">
         The <span class="grad">desktop IDE</span><br />
@@ -32,19 +31,20 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
       <p class="lede">{{ APP_TAGLINE }}. {{ APP_SUBTITLE }}</p>
 
       <div class="cta-row">
-        <a v-if="primaryAsset" :href="primaryAsset.browser_download_url" class="btn primary lg" download>
-          <span class="os-icon" :data-os="os" aria-hidden="true"></span>
-          Download for {{ osLabel(os) }}
-          <span class="size dim">{{ formatBytes(primaryAsset.size) }}</span>
+        <a
+          :href="`https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`"
+          class="btn primary lg"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="github-icon" aria-hidden="true">★</span>
+          Star on GitHub for updates
         </a>
-        <a v-else :href="releasesPageUrl" class="btn primary lg" target="_blank" rel="noopener">
-          Download from GitHub
-        </a>
-        <router-link to="/#download" class="btn ghost lg">All platforms</router-link>
+        <router-link to="/docs" class="btn ghost lg">Preview the docs</router-link>
       </div>
 
       <p class="small-print dim">
-        Free and open-source. Works on Linux and macOS.
+        Free and open-source. Linux and macOS at launch. <span class="muted-tag">In active development.</span>
       </p>
     </div>
 
@@ -113,7 +113,132 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
   background-size: 100% 100%, 32px 32px, 32px 32px;
   z-index: -1;
   pointer-events: none;
+  animation: gridDrift 40s linear infinite;
 }
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to   { background-position: 0 0, 32px 32px, 32px 32px; }
+}
+
+/* 3 floating gradient orbs — set the mood, parallax with prefers-reduced-motion safe. */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -2;
+  pointer-events: none;
+  will-change: transform;
+}
+.orb-1 {
+  top: -120px;
+  left: -100px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.45), transparent 70%);
+  animation: orbFloat1 22s ease-in-out infinite;
+}
+.orb-2 {
+  top: 100px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.30), transparent 70%);
+  animation: orbFloat2 28s ease-in-out infinite;
+}
+.orb-3 {
+  bottom: 60px;
+  left: 30%;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.18), transparent 70%);
+  animation: orbFloat3 34s ease-in-out infinite;
+}
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(60px, 40px) scale(1.08); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-50px, 60px) scale(1.12); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(40px, -50px) scale(0.92); }
+}
+
+/* Aurora sweep — diagonal moving sheen layered over the orbs. */
+.bg-aurora {
+  position: absolute;
+  inset: -20% -10%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(124, 92, 255, 0.06) 25%,
+    rgba(74, 222, 128, 0.06) 50%,
+    transparent 75%
+  );
+  filter: blur(30px);
+  z-index: -1;
+  pointer-events: none;
+  animation: auroraSlide 18s ease-in-out infinite alternate;
+}
+@keyframes auroraSlide {
+  from { transform: translateX(-15%) skewX(-3deg); }
+  to   { transform: translateX(15%) skewX(3deg); }
+}
+
+/* Particle field — twelve drifting dots with random-feeling animation delays. */
+.bg-particles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(196, 181, 253, 0.6);
+  box-shadow: 0 0 6px rgba(124, 92, 255, 0.7);
+  animation: particleRise 14s linear infinite;
+  opacity: 0;
+}
+.bg-particles span:nth-child(1)  { left: 5%;  top: 100%; animation-delay: 0s;   animation-duration: 14s; }
+.bg-particles span:nth-child(2)  { left: 12%; top: 100%; animation-delay: 1.2s; animation-duration: 17s; }
+.bg-particles span:nth-child(3)  { left: 21%; top: 100%; animation-delay: 2.4s; animation-duration: 15s; width: 4px; height: 4px; }
+.bg-particles span:nth-child(4)  { left: 30%; top: 100%; animation-delay: 3.6s; animation-duration: 19s; }
+.bg-particles span:nth-child(5)  { left: 40%; top: 100%; animation-delay: 0.5s; animation-duration: 16s; }
+.bg-particles span:nth-child(6)  { left: 49%; top: 100%; animation-delay: 4.8s; animation-duration: 18s; width: 2px; height: 2px; }
+.bg-particles span:nth-child(7)  { left: 58%; top: 100%; animation-delay: 6s;   animation-duration: 14s; }
+.bg-particles span:nth-child(8)  { left: 67%; top: 100%; animation-delay: 1.8s; animation-duration: 20s; }
+.bg-particles span:nth-child(9)  { left: 75%; top: 100%; animation-delay: 7.2s; animation-duration: 15s; width: 4px; height: 4px; }
+.bg-particles span:nth-child(10) { left: 83%; top: 100%; animation-delay: 8.4s; animation-duration: 17s; }
+.bg-particles span:nth-child(11) { left: 90%; top: 100%; animation-delay: 2.9s; animation-duration: 19s; }
+.bg-particles span:nth-child(12) { left: 95%; top: 100%; animation-delay: 9.6s; animation-duration: 16s; }
+@keyframes particleRise {
+  0%   { transform: translateY(0)    translateX(0);    opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.7; }
+  100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+}
+
+/* Reveal on mount — fade-in-up the hero content. */
+.reveal {
+  animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb, .bg-aurora, .bg-particles span, .bg-grid, .reveal, .coming-pill, .pill .dot.pulse {
+    animation: none !important;
+  }
+}
+
 .hero-inner {
   text-align: center;
   padding-top: 24px;
@@ -122,12 +247,39 @@ const version = computed(() => release.value?.tag_name?.replace(/^v/, '') || '')
   text-decoration: none;
   margin-bottom: 28px;
 }
+.coming-pill {
+  background: linear-gradient(110deg, rgba(124, 92, 255, 0.18), rgba(74, 222, 128, 0.18));
+  border-color: rgba(124, 92, 255, 0.35);
+  animation: comingShimmer 4s ease-in-out infinite;
+}
+@keyframes comingShimmer {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.4); }
+  50%      { box-shadow: 0 0 0 8px rgba(124, 92, 255, 0); }
+}
 .pill .dot {
   width: 6px;
   height: 6px;
   border-radius: 999px;
   background: var(--success);
   box-shadow: 0 0 12px var(--success);
+}
+.pill .dot.pulse {
+  animation: dotPulse 1.6s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.85); }
+}
+.muted-tag {
+  color: var(--accent);
+  font-weight: 600;
+}
+.github-icon {
+  display: inline-block;
+  color: #fbbf24;
+  font-size: 16px;
+  line-height: 1;
+  transform: translateY(-1px);
 }
 .headline {
   font-size: clamp(40px, 6.8vw, 78px);
