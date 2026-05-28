@@ -1,6 +1,28 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import { useHead } from '@vueuse/head';
 import DocsIllustration from '../components/DocsIllustration.vue';
+import { CANONICAL_URL } from '../config';
+
+useHead({
+  title: 'Documentation — Frappe Code | Frappe & ERPNext desktop IDE',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Complete documentation for Frappe Code: editor, bench actions, sites, doctypes, hooks, print formats, database browser, API client, SSH, git, ngrok, and auto-updates. Every feature explained.',
+    },
+    { property: 'og:title', content: 'Frappe Code Documentation' },
+    {
+      property: 'og:description',
+      content:
+        'Documentation for every feature of Frappe Code, the open-source desktop IDE for Frappe & ERPNext developers.',
+    },
+    { property: 'og:url', content: `${CANONICAL_URL}/docs` },
+    { name: 'twitter:title', content: 'Frappe Code Documentation' },
+  ],
+  link: [{ rel: 'canonical', href: `${CANONICAL_URL}/docs` }],
+});
 
 interface Section {
   id: string;

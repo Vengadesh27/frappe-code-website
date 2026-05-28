@@ -2,25 +2,160 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#7c5cff" />
+
+    <!-- Primary SEO -->
+    <title>Frappe Code — The desktop IDE built for Frappe & ERPNext developers</title>
     <meta
       name="description"
-      content="Frappe Code — a desktop IDE for managing Frappe / ERPNext benches. Edit hooks, run remote commands over SSH, browse the database, and use AI assistance in one app."
+      content="Frappe Code is the free, open-source desktop IDE built for Frappe and ERPNext developers. Edit hooks and print formats, run bench commands, manage sites, query databases, and connect to remote benches over SSH — all in one VS Code-style window for Linux and macOS."
     />
-    <meta property="og:title" content="Frappe Code — Desktop IDE for Frappe & ERPNext" />
-    <meta property="og:description" content="VS Code-style desktop IDE for managing Frappe / ERPNext benches." />
+    <meta
+      name="keywords"
+      content="Frappe IDE, Frappe Code, ERPNext IDE, Frappe developer tools, Frappe bench manager, ERPNext developer desktop, Frappe hooks editor, Frappe print format editor, ERPNext desktop app, Frappe SSH client, Frappe site manager, Frappe Linux IDE, Frappe macOS IDE, bench start GUI, bench init GUI, frappe-bench desktop"
+    />
+    <meta name="author" content="Vengadesh M" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow" />
+    <link rel="canonical" href="https://frappecode.netlify.app/" />
+
+    <!-- Icons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <title>Frappe Code — Desktop IDE for Frappe & ERPNext</title>
+    <meta property="og:site_name" content="Frappe Code" />
+    <meta property="og:title" content="Frappe Code — Desktop IDE for Frappe & ERPNext" />
+    <meta
+      property="og:description"
+      content="The free, open-source VS Code-style IDE for Frappe & ERPNext bench developers. Edit hooks, print formats, run bench commands, manage sites, and connect to remote benches over SSH."
+    />
+    <meta property="og:url" content="https://frappecode.netlify.app/" />
+    <meta property="og:image" content="https://frappecode.netlify.app/og-image.png" />
+    <meta property="og:image:alt" content="Frappe Code desktop IDE — code editor, sidebar, bench actions" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Frappe Code — Desktop IDE for Frappe & ERPNext" />
+    <meta
+      name="twitter:description"
+      content="Free, open-source VS Code-style IDE for Frappe & ERPNext bench developers. Linux + macOS."
+    />
+    <meta name="twitter:image" content="https://frappecode.netlify.app/og-image.png" />
+
+    <!-- Preconnect to perf-critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://api.github.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Frappe Code",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS",
+        "softwareVersion": "0.1.0-prealpha.1",
+        "url": "https://frappecode.netlify.app/",
+        "downloadUrl": "https://github.com/Vengadesh27/frappe-code/releases/latest",
+        "description": "Frappe Code is the free, open-source desktop IDE built for Frappe and ERPNext developers. Edit hooks and print formats, run bench commands, manage sites, query databases, and connect to remote benches over SSH.",
+        "license": "https://github.com/Vengadesh27/frappe-code/blob/master/LICENSE",
+        "author": {
+          "@type": "Person",
+          "name": "Vengadesh M",
+          "url": "https://github.com/Vengadesh27"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Vengadesh M"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "screenshot": "https://frappecode.netlify.app/og-image.png",
+        "softwareHelp": {
+          "@type": "WebPage",
+          "url": "https://frappecode.netlify.app/docs"
+        },
+        "featureList": [
+          "VS Code-style multi-pane editor",
+          "Bench actions with live log streaming",
+          "Site management (create, drop, configure, backup, restore)",
+          "Doctype, hooks, and print format editors",
+          "Database browser with SQL console",
+          "REST API client (Postman-style)",
+          "SSH + remote bench support",
+          "Git integration with commit graph",
+          "ngrok public tunnels",
+          "Auto-updates via GitHub Releases"
+        ]
+      }
+    </script>
+
+    <!-- JSON-LD: WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Frappe Code",
+        "url": "https://frappecode.netlify.app/",
+        "publisher": {
+          "@type": "Person",
+          "name": "Vengadesh M",
+          "url": "https://github.com/Vengadesh27"
+        }
+      }
+    </script>
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Frappe Code",
+        "url": "https://frappecode.netlify.app/",
+        "logo": "https://frappecode.netlify.app/favicon.svg",
+        "sameAs": [
+          "https://github.com/Vengadesh27/frappe-code",
+          "https://github.com/Vengadesh27/frappe-code-website"
+        ]
+      }
+    </script>
+
   </head>
   <body>
     <div id="app"></div>
+    <!-- Fallback content for crawlers that don't execute JS. Real content
+         is rendered by Vue on top — but if prerendering ever breaks this
+         keyword-rich block still gives bots something to chew on. -->
+    <noscript>
+      <h1>Frappe Code — Desktop IDE for Frappe & ERPNext</h1>
+      <p>
+        Frappe Code is a free, open-source desktop IDE for Frappe and ERPNext developers.
+        Manage your frappe-bench, edit hooks and print formats, run bench commands,
+        manage sites, query the database, and connect to remote benches over SSH —
+        all in one VS Code-style window for Linux and macOS.
+      </p>
+      <p>
+        <a href="https://github.com/Vengadesh27/frappe-code/releases/latest">Download the latest release</a>
+        ·
+        <a href="https://frappecode.netlify.app/docs">Read the documentation</a>
+        ·
+        <a href="https://github.com/Vengadesh27/frappe-code">Source on GitHub</a>
+      </p>
+    </noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

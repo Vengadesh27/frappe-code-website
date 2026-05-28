@@ -1,0 +1,26 @@
+# Crawlers welcome. Sitemap below.
+User-agent: *
+Allow: /
+Disallow: /assets/
+
+# Block AI scrapers that don't respect content licensing. Comment out
+# these lines if you want your site to be crawled for AI training data.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+Sitemap: https://frappecode.netlify.app/sitemap.xml
