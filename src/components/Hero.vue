@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO } from '../config';
+import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../config';
 </script>
 
 <template>
@@ -18,9 +18,9 @@ import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO } from '../config'
     </div>
 
     <div class="container hero-inner reveal">
-      <span class="pill coming-pill">
-        <span class="dot pulse"></span>
-        Coming soon · launching shortly
+      <span class="pill released-pill">
+        <span class="dot"></span>
+        Alpha 1 — now available for Linux
       </span>
 
       <h1 class="headline">
@@ -32,19 +32,26 @@ import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO } from '../config'
 
       <div class="cta-row">
         <a
-          :href="`https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`"
+          :href="DOWNLOAD_RELEASES_URL"
           class="btn primary lg"
           target="_blank"
           rel="noopener"
         >
-          <span class="github-icon" aria-hidden="true">★</span>
-          Star on GitHub for updates
+          ⬇ Download Alpha 1
         </a>
-        <router-link to="/docs" class="btn ghost lg">Preview the docs</router-link>
+        <a
+          :href="`https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}`"
+          class="btn ghost lg"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="github-icon" aria-hidden="true">★</span>
+          Star on GitHub
+        </a>
       </div>
 
       <p class="small-print dim">
-        Free and open-source. Linux and macOS at launch. <span class="muted-tag">In active development.</span>
+        Free and open-source · Linux (AppImage &amp; .deb) · Alpha release
       </p>
     </div>
 
@@ -247,14 +254,9 @@ import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO } from '../config'
   text-decoration: none;
   margin-bottom: 28px;
 }
-.coming-pill {
-  background: linear-gradient(110deg, rgba(124, 92, 255, 0.18), rgba(74, 222, 128, 0.18));
-  border-color: rgba(124, 92, 255, 0.35);
-  animation: comingShimmer 4s ease-in-out infinite;
-}
-@keyframes comingShimmer {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.4); }
-  50%      { box-shadow: 0 0 0 8px rgba(124, 92, 255, 0); }
+.released-pill {
+  background: linear-gradient(110deg, rgba(74, 222, 128, 0.18), rgba(124, 92, 255, 0.18));
+  border-color: rgba(74, 222, 128, 0.45);
 }
 .pill .dot {
   width: 6px;
@@ -262,17 +264,6 @@ import { APP_TAGLINE, APP_SUBTITLE, GITHUB_OWNER, GITHUB_REPO } from '../config'
   border-radius: 999px;
   background: var(--success);
   box-shadow: 0 0 12px var(--success);
-}
-.pill .dot.pulse {
-  animation: dotPulse 1.6s ease-in-out infinite;
-}
-@keyframes dotPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.55; transform: scale(0.85); }
-}
-.muted-tag {
-  color: var(--accent);
-  font-weight: 600;
 }
 .github-icon {
   display: inline-block;

@@ -2,6 +2,11 @@
 // metadata from the public GitHub Releases API for this repo.
 export const GITHUB_OWNER = 'Vengadesh27';
 export const GITHUB_REPO = 'frappe-code';
+
+// Separate repo used to host distributable release assets (.deb, .AppImage).
+export const DOWNLOAD_OWNER = 'Vengadesh27';
+export const DOWNLOAD_REPO = 'FrappeCode-Download';
+export const DOWNLOAD_RELEASES_URL = `https://github.com/${DOWNLOAD_OWNER}/${DOWNLOAD_REPO}/releases/latest`;
 export const APP_NAME = 'Frappe Code';
 export const APP_TAGLINE = 'A desktop IDE for Frappe';
 export const APP_SUBTITLE =

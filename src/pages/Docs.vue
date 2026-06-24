@@ -100,12 +100,6 @@ onMounted(() => {
     </aside>
 
     <article class="docs-body">
-      <div class="coming-banner" role="status">
-        <span class="cb-dot"></span>
-        <span class="cb-text">
-          Frappe Code is in active pre-release — these docs are a preview of what's shipping.
-        </span>
-      </div>
       <header class="docs-header">
         <span class="pill">Documentation</span>
         <h1>Frappe Code in detail.</h1>
@@ -433,39 +427,6 @@ onMounted(() => {
   max-width: 640px;
 }
 
-.coming-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(110deg, rgba(124, 92, 255, 0.14), rgba(74, 222, 128, 0.12));
-  border: 1px solid rgba(124, 92, 255, 0.32);
-  border-radius: 999px;
-  padding: 8px 16px;
-  margin-bottom: 18px;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--fg);
-  animation: bannerGlow 3.6s ease-in-out infinite;
-}
-.cb-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent);
-  animation: cbDotPulse 1.6s ease-in-out infinite;
-}
-.cb-text {
-  letter-spacing: -0.005em;
-}
-@keyframes bannerGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.35); }
-  50%      { box-shadow: 0 0 0 6px rgba(124, 92, 255, 0); }
-}
-@keyframes cbDotPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(0.6); opacity: 0.55; }
-}
 
 .docs-section {
   padding: 36px 0 28px;
@@ -484,7 +445,7 @@ onMounted(() => {
   border-top: 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .docs-section, .coming-banner, .cb-dot {
+  .docs-section {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
