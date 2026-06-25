@@ -9,38 +9,79 @@ onMounted(() => {
   if (!canvas) return;
   const ctx = canvas.getContext('2d')!;
   let W = 0, H = 0;
-  interface Dot { x: number; y: number; r: number; vx: number; vy: number; color: string; }
+  let mouseX = -9999, mouseY = -9999;
+  const REPEL_RADIUS = 120;
+  const REPEL_STRENGTH = 3.5;
+  const MAX_SPEED = 4;
+
+  interface Dot {
+    x: number; y: number; r: number;
+    vx: number; vy: number;
+    baseVx: number; baseVy: number;
+    color: string;
+  }
   let dots: Dot[] = [];
 
   function resize() {
-    W = canvas!.width  = canvas!.parentElement!.offsetWidth;
-    H = canvas!.height = canvas!.parentElement!.offsetHeight;
-    dots = Array.from({ length: 130 }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 2.2 + 0.6,
-      vx: (Math.random() - .5) * .35,
-      vy: (Math.random() - .5) * .35,
-      color: Math.random() < .55
-        ? `rgba(50,121,249,${(Math.random() * .45 + .15).toFixed(2)})`
-        : `rgba(234,67,53,${(Math.random() * .35 + .1).toFixed(2)})`,
-    }));
+    const rect = canvas!.parentElement!.getBoundingClientRect();
+    W = canvas!.width  = rect.width;
+    H = canvas!.height = rect.height;
+    dots = Array.from({ length: 150 }, () => {
+      const bvx = (Math.random() - .5) * .4;
+      const bvy = (Math.random() - .5) * .4;
+      return {
+        x: Math.random() * W, y: Math.random() * H,
+        r: Math.random() * 2.4 + 0.8,
+        vx: bvx, vy: bvy, baseVx: bvx, baseVy: bvy,
+        color: Math.random() < .55
+          ? `rgba(50,121,249,${(Math.random() * .5 + .2).toFixed(2)})`
+          : `rgba(234,67,53,${(Math.random() * .4 + .15).toFixed(2)})`,
+      };
+    });
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
     for (const d of dots) {
+      // Mouse repulsion
+      const dx = d.x - mouseX;
+      const dy = d.y - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < REPEL_RADIUS && dist > 0) {
+        const force = (REPEL_RADIUS - dist) / REPEL_RADIUS;
+        d.vx += (dx / dist) * force * REPEL_STRENGTH * 0.12;
+        d.vy += (dy / dist) * force * REPEL_STRENGTH * 0.12;
+      }
+      // Drift back toward base velocity
+      d.vx += (d.baseVx - d.vx) * 0.03;
+      d.vy += (d.baseVy - d.vy) * 0.03;
+      // Clamp speed
+      const spd = Math.sqrt(d.vx * d.vx + d.vy * d.vy);
+      if (spd > MAX_SPEED) { d.vx = d.vx / spd * MAX_SPEED; d.vy = d.vy / spd * MAX_SPEED; }
+
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0 || d.x > W) { d.vx *= -1; d.baseVx *= -1; }
+      if (d.y < 0 || d.y > H) { d.vy *= -1; d.baseVy *= -1; }
+
       ctx.beginPath();
       ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
       ctx.fillStyle = d.color;
       ctx.fill();
-      d.x += d.vx; d.y += d.vy;
-      if (d.x < 0 || d.x > W) d.vx *= -1;
-      if (d.y < 0 || d.y > H) d.vy *= -1;
     }
     animId = requestAnimationFrame(draw);
   }
 
+  function onMouseMove(e: MouseEvent) {
+    const rect = canvas!.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  }
+  function onMouseLeave() { mouseX = -9999; mouseY = -9999; }
+
+  // Listen on the hero section so the full area is interactive
+  const hero = canvas.parentElement!;
+  hero.addEventListener('mousemove', onMouseMove);
+  hero.addEventListener('mouseleave', onMouseLeave);
   window.addEventListener('resize', resize);
   resize();
   draw();

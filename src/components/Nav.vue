@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { APP_NAME, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../config';
+import { APP_NAME, GITHUB_OWNER, GITHUB_REPO } from '../config';
 </script>
 
 <template>
@@ -25,13 +25,6 @@ import { APP_NAME, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../c
           rel="noopener"
         >GitHub</a>
       </nav>
-
-      <a :href="DOWNLOAD_RELEASES_URL" class="btn-cta" target="_blank" rel="noopener">
-        Download
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-          <path d="M6.5 2v7M3 7l3.5 3.5L10 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
     </div>
   </header>
 </template>
@@ -41,9 +34,9 @@ import { APP_NAME, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../c
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   height: var(--nav-h);
 }
@@ -54,7 +47,7 @@ import { APP_NAME, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../c
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 8px;
 }
 .brand {
   display: inline-flex;
@@ -62,6 +55,7 @@ import { APP_NAME, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../c
   gap: 9px;
   flex-shrink: 0;
   text-decoration: none;
+  margin-right: 16px;
 }
 .logo {
   width: 28px;
@@ -79,42 +73,24 @@ import { APP_NAME, GITHUB_OWNER, GITHUB_REPO, DOWNLOAD_RELEASES_URL } from '../c
   display: flex;
   align-items: center;
   gap: 2px;
-  flex: 1;
 }
 .nav-link {
-  padding: 6px 12px;
+  padding: 6px 13px;
   font-size: 14px;
   font-weight: 450;
   color: var(--text-sec);
   border-radius: var(--radius-pill);
   transition: background 140ms, color 140ms;
   text-decoration: none;
+  white-space: nowrap;
 }
 .nav-link:hover,
 .nav-link.router-link-active {
   background: var(--surface-high);
   color: var(--text);
 }
-.btn-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 18px;
-  background: var(--text);
-  color: var(--bg);
-  border-radius: var(--radius-pill);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  flex-shrink: 0;
-  transition: opacity 160ms;
-  margin-left: auto;
-}
-.btn-cta:hover { opacity: .85; }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .links { display: none; }
-  .inner { gap: 0; }
-  .btn-cta { margin-left: auto; }
 }
 </style>

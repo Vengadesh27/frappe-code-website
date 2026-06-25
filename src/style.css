@@ -15,12 +15,12 @@
   --success: #0a7c3e;
   --success-bg: rgba(10, 124, 62, 0.07);
 
-  --max-w: 1280px;
-  --page-margin: 72px;
-  --nav-h: 56px;
+  --max-w: 1200px;
+  --page-margin: 56px;
+  --nav-h: 60px;
   --radius-sm: 8px;
   --radius: 12px;
-  --radius-lg: 24px;
+  --radius-lg: 20px;
   --radius-pill: 9999px;
 
   /* legacy aliases kept so existing components still compile */
@@ -119,29 +119,34 @@ img { display: block; max-width: 100%; }
 
 /* ── Sections ── */
 .section {
-  padding: 100px 0;
+  padding: 88px 0;
   border-top: 1px solid var(--border);
 }
 .section h2 {
-  font-size: clamp(28px, 3.5vw, 48px);
+  font-size: clamp(28px, 3.5vw, 44px);
   letter-spacing: -0.025em;
   margin: 0 0 10px;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.1;
+  color: var(--text);
 }
 .section .sub {
-  font-size: 16px;
+  font-size: 15.5px;
   color: var(--text-sec);
-  margin: 0 0 44px;
-  max-width: 600px;
+  margin: 0 0 40px;
+  max-width: 560px;
   line-height: 1.65;
 }
 
+/* Ensure text is always visible */
+h1, h2, h3, h4 { color: var(--text); }
+p { color: var(--text-sec); }
+
 @media (max-width: 1024px) {
-  :root { --page-margin: 40px; }
+  :root { --page-margin: 36px; }
 }
 @media (max-width: 720px) {
-  :root { --page-margin: 20px; }
-  .section { padding: 64px 0; }
-  .section h2 { font-size: 28px; }
+  :root { --page-margin: 18px; }
+  .section { padding: 56px 0; }
+  .section h2 { font-size: 26px; }
 }

@@ -24,6 +24,7 @@ const features: Feature[] = [
   { icon: '🔍', title: 'Dependency checker', body: 'Verify Python, Node.js, wkhtmltopdf, Redis, and MariaDB versions. Detect missing bench prerequisites before they break builds.' },
   { icon: '🌍', title: 'Public tunnels via ngrok', body: 'Share your dev bench with a teammate or webhook provider with a one-click ngrok tunnel, scoped to your active site.' },
   { icon: '🔄', title: 'Auto-updates', body: 'Frappe Code updates itself silently in the background. You get notified when a new version is ready — no manual reinstalls.' },
+  { icon: '🌐', title: 'Built-in app browser', body: 'Browse your Frappe site directly inside the IDE with a full tabbed browser — no need to switch to Chrome. Navigate, test forms, and inspect your site without leaving Frappe Code.' },
   { icon: '🛡', title: 'Hardened by default', body: 'Code obfuscation, asar integrity validation, DevTools blocked in production, and sandboxed renderer — secure out of the box.' },
 ];
 </script>
