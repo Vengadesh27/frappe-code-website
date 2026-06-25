@@ -1,157 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,slnt,wdth,wght,ROND@8..144,-10..0,25..150,400..500,0..100&display=swap');
+
 :root {
-  --bg: #0a0d12;
-  --bg-elev: #11151c;
-  --bg-card: #161b24;
-  --bg-card-hover: #1c2230;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.12);
-  --fg: #e7e9ee;
-  --fg-muted: #9aa1ad;
-  --fg-dim: #6b7280;
-  --accent: #7c5cff;
-  --accent-2: #6a47f5;
-  --accent-soft: rgba(124, 92, 255, 0.12);
-  --accent-glow: rgba(124, 92, 255, 0.28);
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --danger: #fb7185;
+  --bg: #ffffff;
+  --surface: #f8f9fc;
+  --surface-high: #f0f1f5;
+  --surface-higher: #e6eaf0;
+  --text: #121317;
+  --text-sec: #45474d;
+  --text-dim: #7a7d85;
+  --border: rgba(33, 34, 38, 0.08);
+  --border-strong: rgba(33, 34, 38, 0.14);
+  --accent: #3279f9;
+  --accent-soft: rgba(50, 121, 249, 0.08);
+  --success: #0a7c3e;
+  --success-bg: rgba(10, 124, 62, 0.07);
 
-  --max-w: 1180px;
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-lg: 16px;
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+  --max-w: 1280px;
+  --page-margin: 72px;
+  --nav-h: 56px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+
+  /* legacy aliases kept so existing components still compile */
+  --bg-card: var(--surface);
+  --bg-card-hover: var(--surface-high);
+  --bg-elev: var(--surface);
+  --fg: var(--text);
+  --fg-muted: var(--text-sec);
+  --fg-dim: var(--text-dim);
+  --border-strong: rgba(33, 34, 38, 0.14);
+  --accent-glow: rgba(50, 121, 249, 0.15);
+  --accent-2: #2563eb;
+  --shadow-card: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  --radius-sm: 8px;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 
-html,
 body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Google Sans Flex', 'Google Sans', system-ui, -apple-system, sans-serif;
   background: var(--bg);
-  color: var(--fg);
-  line-height: 1.6;
+  color: var(--text);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-code,
-.mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+code, .mono {
+  font-family: 'Google Sans Code', ui-monospace, 'Fira Code', monospace;
   font-size: 0.92em;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { display: block; max-width: 100%; }
 
 .container {
-  max-width: var(--max-w);
+  max-width: calc(var(--max-w) + var(--page-margin) * 2);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--page-margin);
 }
 
+/* ── Buttons ── */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 18px;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 600;
-  border: 1px solid transparent;
-  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 450;
+  border: none;
+  cursor: pointer;
+  transition: opacity 160ms, background 160ms;
   white-space: nowrap;
-  background: var(--bg-card);
-  color: var(--fg);
-  border-color: var(--border-strong);
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface-high);
 }
-
-.btn:hover {
-  background: var(--bg-card-hover);
-  transform: translateY(-1px);
-}
+.btn:hover { background: var(--surface-higher); }
 
 .btn.primary {
-  background: linear-gradient(180deg, #8e72ff 0%, #6a47f5 100%);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 10px 28px -8px var(--accent-glow);
+  background: var(--text);
+  color: var(--bg);
 }
-
-.btn.primary:hover {
-  filter: brightness(1.08);
-}
+.btn.primary:hover { opacity: .85; }
 
 .btn.ghost {
-  background: transparent;
-  border-color: var(--border-strong);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-sec);
 }
+.btn.ghost:hover { background: var(--surface-high); color: var(--text); }
 
-.btn.ghost:hover {
-  background: var(--bg-card);
-}
+.btn.lg { padding: 14px 26px; font-size: 15.5px; }
 
+/* ── Pill labels ── */
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid rgba(124, 92, 255, 0.22);
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
-.muted {
-  color: var(--fg-muted);
-}
+.muted { color: var(--text-sec); }
+.dim   { color: var(--text-dim); }
 
-.dim {
-  color: var(--fg-dim);
-}
-
+/* ── Sections ── */
 .section {
-  padding: 96px 0;
+  padding: 100px 0;
   border-top: 1px solid var(--border);
 }
-
 .section h2 {
-  font-size: 36px;
-  letter-spacing: -0.02em;
+  font-size: clamp(28px, 3.5vw, 48px);
+  letter-spacing: -0.025em;
   margin: 0 0 10px;
-  font-weight: 700;
+  font-weight: 450;
+  line-height: 1.1;
 }
-
 .section .sub {
   font-size: 16px;
-  color: var(--fg-muted);
-  margin: 0 0 40px;
-  max-width: 620px;
+  color: var(--text-sec);
+  margin: 0 0 44px;
+  max-width: 600px;
+  line-height: 1.65;
 }
 
+@media (max-width: 1024px) {
+  :root { --page-margin: 40px; }
+}
 @media (max-width: 720px) {
-  .section {
-    padding: 64px 0;
-  }
-  .section h2 {
-    font-size: 28px;
-  }
+  :root { --page-margin: 20px; }
+  .section { padding: 64px 0; }
+  .section h2 { font-size: 28px; }
 }
