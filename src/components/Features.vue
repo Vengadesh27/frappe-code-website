@@ -9,12 +9,27 @@ const features: Feature[] = [
   {
     icon: '⌘',
     title: 'VS Code-style workspace',
-    body: 'Monaco editor, multi-pane layout, tabs, breadcrumbs, search, and a command palette that already feels like home.',
+    body: 'Monaco editor, multi-pane layout, tabs, breadcrumbs, global search, snippets library, and a command palette that already feels like home.',
   },
   {
-    icon: '⚙',
-    title: 'Bench actions, one click',
-    body: 'Migrate, restart, build, clear cache, check health, update — every bench command exposed as a button with live log streaming.',
+    icon: '🔀',
+    title: 'Git integration',
+    body: 'Stage, commit, push, pull, create branches, view diffs, and resolve conflicts — full Git workflow without leaving the IDE.',
+  },
+  {
+    icon: '⚡',
+    title: 'Integrated terminal',
+    body: 'Full xterm.js terminal emulator built in. Run bench commands, Python shells, or any shell script directly inside the IDE.',
+  },
+  {
+    icon: '🌐',
+    title: 'REST API client',
+    body: 'Built-in HTTP client to test Frappe REST endpoints. Set headers, authentication, and inspect JSON responses without Postman.',
+  },
+  {
+    icon: '🗄',
+    title: 'Database browser',
+    body: 'Browse MariaDB tables, run raw SQL queries, view query results, and inspect the schema of any site database.',
   },
   {
     icon: '🔌',
@@ -22,24 +37,69 @@ const features: Feature[] = [
     body: 'Connect to staging or production servers, run commands, tunnel ports, and edit files over SSH without leaving the IDE.',
   },
   {
-    icon: '🗄',
-    title: 'Site & database browser',
-    body: 'Browse sites, run queries, dump and restore databases, manage site config and installed apps from a single panel.',
+    icon: '📦',
+    title: 'App & bench manager',
+    body: 'Install, remove, and upgrade Frappe apps. Migrate, restart, build, clear cache, check health — every bench command with live log streaming.',
+  },
+  {
+    icon: '🏗',
+    title: 'Sites manager',
+    body: 'Create, delete, rename sites, manage site configuration, installed apps, and jump between multiple Frappe sites instantly.',
   },
   {
     icon: '🧩',
-    title: 'Hooks & print formats',
-    body: 'Doctype manager, hooks editor with autocomplete, print format editor with live HTML/CSS preview and snippets.',
+    title: 'Doctype & hooks editor',
+    body: 'Browse all doctypes, edit hooks with autocomplete, manage custom fields, fixtures, and modules from a dedicated editor panel.',
   },
   {
-    icon: '🌐',
+    icon: '🖨',
+    title: 'Print format designer',
+    body: 'Design print formats with a live HTML/CSS preview editor and built-in Jinja snippets. See changes in real time.',
+  },
+  {
+    icon: '💾',
+    title: 'Backup & restore',
+    body: 'Create database and files backups, schedule automated backups, and restore any site from a backup archive in one click.',
+  },
+  {
+    icon: '📋',
+    title: 'Log viewer',
+    body: 'Tail frappe, worker, and scheduler logs in real time. Search, filter by level, and clear logs — all without SSH.',
+  },
+  {
+    icon: '📅',
+    title: 'Scheduler & jobs',
+    body: 'View, enable, disable, and manually trigger scheduled jobs. Inspect job history and debug cron-related issues.',
+  },
+  {
+    icon: '👥',
+    title: 'User management',
+    body: 'List, create, and manage site users. Reset passwords, change roles, and control access without opening the Frappe desk.',
+  },
+  {
+    icon: '📧',
+    title: 'Email configuration',
+    body: 'Set up inbound and outbound email accounts, test SMTP/IMAP connections, and configure email domains per site.',
+  },
+  {
+    icon: '🔍',
+    title: 'Dependency checker',
+    body: 'Verify Python, Node.js, wkhtmltopdf, Redis, and MariaDB versions. Detect missing bench prerequisites before they break builds.',
+  },
+  {
+    icon: '🌍',
     title: 'Public tunnels via ngrok',
-    body: 'Share your dev bench with a teammate or a webhook provider with a one-click ngrok tunnel, scoped to your active site.',
+    body: 'Share your dev bench with a teammate or webhook provider with a one-click ngrok tunnel, scoped to your active site.',
+  },
+  {
+    icon: '🔄',
+    title: 'Auto-updates',
+    body: 'Frappe Code updates itself silently in the background. You get notified when a new version is ready — no manual reinstalls.',
   },
   {
     icon: '🛡',
     title: 'Hardened by default',
-    body: 'Electron Fuses locked down, asar integrity validation, no Node CLI inspect, code signing on macOS and Windows.',
+    body: 'Code obfuscation, asar integrity validation, DevTools blocked in production, and sandboxed renderer — secure out of the box.',
   },
 ];
 </script>
